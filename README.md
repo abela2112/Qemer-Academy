@@ -1,7 +1,11 @@
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
-
+Qemer Learning Academy is a comprehensive web application designed to revolutionize online education by providing an engaging and effective learning experience. The platform offers a wide range of courses across various disciplines, utilizing advanced technologies and interactive tools to enhance the learning process.
+ 
 First, run the development server:
 
 ```bash
