@@ -5,7 +5,7 @@ const TeachersPage = () => {
   return (
     <div className="p-6">
       <Link href={"/teacher/create"}>
-        <Button>Create</Button>
+        <Button variant={"default"}>Create</Button>
       </Link>
     </div>
   );
