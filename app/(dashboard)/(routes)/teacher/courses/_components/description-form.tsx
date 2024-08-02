@@ -5,9 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 type Props = {
-  intialData: {
-    title: string;
-  };
+  intialData: Course;
   courseId: string;
 };
 
@@ -23,15 +21,20 @@ import { Pencil } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { cn } from "@/lib/utils";
+import { Textarea } from "@/components/ui/textarea";
+import { Course } from "@prisma/client";
 const formSchema = z.object({
-  title: z.string().min(1, {
-    message: "Title is required",
+  description: z.string().min(1, {
+    message: "Description is required",
   }),
 });
-const CourseTitleForm = ({ intialData, courseId }: Props) => {
+const CourseDiscriptionForm = ({ intialData, courseId }: Props) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: intialData,
+    defaultValues: {
+      description: intialData?.description || "",
+    },
   });
   const router = useRouter();
   const { isSubmitting, isValid } = form.formState;
@@ -50,19 +53,28 @@ const CourseTitleForm = ({ intialData, courseId }: Props) => {
   return (
     <div className="mt-6 bg-slate-100 rounded-md border p-4">
       <div className="font-medium flex item-center justify-between">
-        Course Title
+        Course Description
         <Button variant={"ghost"} onClick={toggleEdit}>
           {isEditting ? (
             <>Cancel</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit Title
+              Edit Description
             </>
           )}
         </Button>
       </div>
-      {!isEditting && <p className="mt-2 text-sm">{intialData.title}</p>}
+      {!isEditting && (
+        <p
+          className={cn(
+            "text-sm mt-2",
+            !intialData.description && "text-slate-500 italic"
+          )}
+        >
+          {intialData.description || "No description"}
+        </p>
+      )}
       {isEditting && (
         <Form {...form}>
           <form
@@ -71,14 +83,14 @@ const CourseTitleForm = ({ intialData, courseId }: Props) => {
           >
             <FormField
               control={form.control}
-              name="title"
+              name="description"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input
+                    <Textarea
                       {...field}
                       disabled={isSubmitting}
-                      placeholder="...Advanced Web Developement"
+                      placeholder="This course is about .."
                     />
                   </FormControl>
                   <FormMessage />
@@ -97,4 +109,4 @@ const CourseTitleForm = ({ intialData, courseId }: Props) => {
   );
 };
 
-export default CourseTitleForm;
+export default CourseDiscriptionForm;

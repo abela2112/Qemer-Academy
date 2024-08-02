@@ -5,6 +5,8 @@ import { LayoutDashboard } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
 import CourseTitleForm from "../_components/title-form";
+import CourseDiscriptionForm from "../_components/description-form";
+import CourseImageForm from "../_components/image-upload";
 
 type Props = {
   params: {
@@ -48,9 +50,9 @@ const CourseIdPage = async ({ params: { courseId } }: Props) => {
             <IconBadge icon={LayoutDashboard} />
             <h2 className="text-xl">Customise your course</h2>
           </div>
-        </div>
-        <div>
           <CourseTitleForm intialData={course} courseId={course.id} />
+          <CourseDiscriptionForm courseId={course.id} intialData={course} />
+          <CourseImageForm courseId={courseId} intialData={course} />
         </div>
       </div>
     </div>
