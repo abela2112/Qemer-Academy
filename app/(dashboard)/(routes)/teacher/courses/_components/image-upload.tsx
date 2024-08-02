@@ -1,45 +1,27 @@
 "use client";
-import React, { useState } from "react";
 import axios from "axios";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { z } from "zod";
 type Props = {
   intialData: Course;
   courseId: string;
 };
 
-import {
-  FormControl,
-  Form,
-  FormField,
-  FormMessage,
-  FormItem,
-} from "@/components/ui/form";
+import FileUpload from "@/components/file-upload";
 import { Button } from "@/components/ui/button";
+import { Course } from "@prisma/client";
 import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
-import { Course } from "@prisma/client";
-import Image from "next/image";
-import FileUpload from "@/components/file-upload";
 const formSchema = z.object({
   image: z.string().min(1, {
     message: "Image is required",
   }),
 });
 const CourseImageForm = ({ intialData, courseId }: Props) => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      image: intialData?.image || "",
-    },
-  });
   const router = useRouter();
-  const { isSubmitting, isValid } = form.formState;
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/course/${courseId}`, values);

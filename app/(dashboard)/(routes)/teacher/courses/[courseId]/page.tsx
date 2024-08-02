@@ -7,6 +7,7 @@ import React from "react";
 import CourseTitleForm from "../_components/title-form";
 import CourseDiscriptionForm from "../_components/description-form";
 import CourseImageForm from "../_components/image-upload";
+import CourseCategoryForm from "../_components/courseCategory";
 
 type Props = {
   params: {
@@ -20,6 +21,13 @@ const CourseIdPage = async ({ params: { courseId } }: Props) => {
   const course = await db.course.findUnique({
     where: { id: courseId, userId },
   });
+
+  const catagories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+  console.log("catagories", catagories);
   if (!course) return redirect("/");
 
   const requireFields = [
@@ -53,6 +61,14 @@ const CourseIdPage = async ({ params: { courseId } }: Props) => {
           <CourseTitleForm intialData={course} courseId={course.id} />
           <CourseDiscriptionForm courseId={course.id} intialData={course} />
           <CourseImageForm courseId={courseId} intialData={course} />
+          <CourseCategoryForm
+            options={catagories.map((catagory) => ({
+              label: catagory.name,
+              value: catagory.id,
+            }))}
+            courseId={courseId}
+            intialData={course}
+          />
         </div>
       </div>
     </div>

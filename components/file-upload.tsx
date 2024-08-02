@@ -17,6 +17,7 @@ const FileUpload = ({ onChange, endpoint }: FileUploadInterface) => {
       }}
       onUploadError={(error) => {
         console.error("Upload Error", error);
+        console.log("error.message", error.stack);
         toast.error(`${error?.message}`);
       }}
     ></UploadDropzone>
