@@ -1,13 +1,20 @@
 import { IconBadge } from "@/components/icon-badge";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { LayoutDashboard } from "lucide-react";
+import {
+  CircleDollarSign,
+  File,
+  LayoutDashboard,
+  ListChecks,
+} from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
 import CourseTitleForm from "../_components/title-form";
 import CourseDiscriptionForm from "../_components/description-form";
 import CourseImageForm from "../_components/image-upload";
 import CourseCategoryForm from "../_components/courseCategory";
+import CoursePriceForm from "../_components/Course_price_form";
+import CourseAttachmentForm from "../_components/Attachment";
 
 type Props = {
   params: {
@@ -20,6 +27,13 @@ const CourseIdPage = async ({ params: { courseId } }: Props) => {
   if (!userId) return redirect("/");
   const course = await db.course.findUnique({
     where: { id: courseId, userId },
+    include: {
+      attachment: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
   });
 
   const catagories = await db.category.findMany({
@@ -69,6 +83,29 @@ const CourseIdPage = async ({ params: { courseId } }: Props) => {
             courseId={courseId}
             intialData={course}
           />
+        </div>
+        <div className="space-y-6">
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={ListChecks} />
+              <h2 className="text-xl"> Course Chapters</h2>
+            </div>
+            <div>TODO Chapters</div>
+          </div>
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={CircleDollarSign} />
+              <h2 className="text-xl">sale your course</h2>
+            </div>
+            <CoursePriceForm intialData={course} courseId={courseId} />
+          </div>
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={File} />
+              <h2 className="text-xl">Resources & Attachment</h2>
+            </div>
+            <CourseAttachmentForm courseId={courseId} intialData={course} />
+          </div>
         </div>
       </div>
     </div>
