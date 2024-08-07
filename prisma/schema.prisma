@@ -54,14 +54,14 @@ model Attachment {
 model Chapter {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
-  description String
+  description String ?
   isFree      Boolean  @default(false)
   isPublished Boolean  @default(false)
   muxData     MuxData? 
   courseId    String   @db.ObjectId
   course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
-  videoUrl     String
+  videoUrl     String ?
   position     Int
   userProgress UserProgress[]
   createdAt    DateTime       @default(now())
