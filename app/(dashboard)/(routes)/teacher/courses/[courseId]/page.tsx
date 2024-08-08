@@ -9,13 +9,13 @@ import {
 } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
-import CourseTitleForm from "../_components/title-form";
-import CourseDiscriptionForm from "../_components/description-form";
-import CourseImageForm from "../_components/image-upload";
-import CourseCategoryForm from "../_components/courseCategory";
-import CoursePriceForm from "../_components/Course_price_form";
-import CourseAttachmentForm from "../_components/Attachment";
-import CourseChapterForm from "../_components/chapterForm";
+import CourseTitleForm from "./_components/title-form";
+import CourseDiscriptionForm from "./_components/description-form";
+import CourseImageForm from "./_components/image-upload";
+import CourseCategoryForm from "./_components/courseCategory";
+import CoursePriceForm from "./_components/Course_price_form";
+import CourseAttachmentForm from "./_components/Attachment";
+import CourseChapterForm from "./_components/chapterForm";
 
 type Props = {
   params: {
