@@ -1,4 +1,4 @@
-import CourseAttachmentForm from "@/app/(dashboard)/(routes)/teacher/courses/_components/Attachment";
+import CourseAttachmentForm from "@/app/(dashboard)/(routes)/teacher/courses/[courseId]/_components/Attachment";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";

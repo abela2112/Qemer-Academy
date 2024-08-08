@@ -20,7 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Chapter, Course } from "@prisma/client";
-import { PlusCircle } from "lucide-react";
+import { Loader2, PlusCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import ChapterList from "./ChapterList";
@@ -37,6 +37,9 @@ const CourseChapterForm = ({ intialData, courseId }: Props) => {
     },
   });
   const router = useRouter();
+  const onEdit = (id: string) => {
+    router.push(`/teacher/courses/${courseId}/chapter/${id}`);
+  };
   const { isSubmitting, isValid } = form.formState;
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -70,7 +73,12 @@ const CourseChapterForm = ({ intialData, courseId }: Props) => {
     }
   };
   return (
-    <div className="mt-6 bg-slate-100 rounded-md border p-4">
+    <div className="relative mt-6 bg-slate-100 rounded-md border p-4">
+      {isUpdating && (
+        <div className="absolute h-full w-full bg-slate-500/20 rounded-m flex items-center justify-center top-0 right-0">
+          <Loader2 className="w-6 h-6 animate-spin text-sky-700" />
+        </div>
+      )}
       <div className="font-medium flex item-center justify-between">
         Course Chapters
         <Button variant={"ghost"} onClick={toggleCreate}>
@@ -132,7 +140,7 @@ const CourseChapterForm = ({ intialData, courseId }: Props) => {
           {!intialData.Chapters?.length && "No chapters"}
           {/* {TODO WITH CHAPTERS} */}
           <ChapterList
-            onEdit={() => {}}
+            onEdit={onEdit}
             onReorder={onReorder}
             items={intialData.Chapters || []}
           />

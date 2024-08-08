@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
-import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 type Props = {
@@ -9,21 +9,20 @@ type Props = {
   courseId: string;
 };
 
-import {
-  FormControl,
-  Form,
-  FormField,
-  FormMessage,
-  FormItem,
-} from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import { Course } from "@prisma/client";
 import { Pencil } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
-import { Course } from "@prisma/client";
 const formSchema = z.object({
   description: z.string().min(1, {
     message: "Description is required",
