@@ -1,13 +1,15 @@
 import { IconBadge } from "@/components/icon-badge";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { ArrowLeft, Eye, LayoutDashboard } from "lucide-react";
+import { ArrowLeft, Eye, LayoutDashboard, Video } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import React from "react";
 import ChapterTitleForm from "./_components/title-form";
 import ChapterDiscriptionForm from "./_components/description-form";
+import ChapterAccessSettingForm from "./_components/Chapter-access-form";
+import ChapterVideoForm from "./_components/chapter-video-upload";
 
 type Props = {};
 
@@ -34,7 +36,7 @@ const ChapterIdPage = async ({
   const totalField = requiredField.length;
   const completionText = `${completedField}/${totalField}`;
   return (
-    <div className="p-6">
+    <div className="p-6 h-full">
       <div className="flex items-center justify-between">
         <div className="w-full">
           <Link
@@ -77,6 +79,24 @@ const ChapterIdPage = async ({
               <IconBadge icon={Eye} />
               <h2 className="text-xl">Access Setting</h2>
             </div>
+            <ChapterAccessSettingForm
+              chapterId={chapterId}
+              courseId={courseId}
+              intialData={chapter}
+            />
+          </div>
+        </div>
+        <div className="space-y-4">
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={Video} />
+              <h2 className="text-xl">Customize your chapter</h2>
+            </div>
+            <ChapterVideoForm
+              intialData={chapter}
+              courseId={courseId}
+              chapterId={chapterId}
+            />
           </div>
         </div>
       </div>

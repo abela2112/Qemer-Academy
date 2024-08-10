@@ -2,31 +2,31 @@
 import axios from "axios";
 import { useState } from "react";
 import { z } from "zod";
+import MuxPlayer from "@mux/mux-player-react";
 type Props = {
-  intialData: Course;
+  intialData: Chapter & { muxData?: MuxData | null };
   courseId: string;
+  chapterId: string;
 };
 
 import FileUpload from "@/components/file-upload";
 import { Button } from "@/components/ui/button";
-import { Course } from "@prisma/client";
-import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
-import Image from "next/image";
+import { Chapter, MuxData } from "@prisma/client";
+import { Pencil, PlusCircle, Video } from "lucide-react";
+import { CldVideoPlayer } from "next-cloudinary";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { CldImage } from "next-cloudinary";
 const formSchema = z.object({
-  image: z.string().min(1, {
-    message: "Image is required",
-  }),
+  videoUrl: z.string(),
 });
-const CourseImageForm = ({ intialData, courseId }: Props) => {
+const ChapterVideoForm = ({ intialData, chapterId, courseId }: Props) => {
   const router = useRouter();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/course/${courseId}`, values);
-      toast.success("Course Updated successfully");
+      await axios.patch(`/api/course/${courseId}/chapter/${chapterId}`, values);
+      console.log("values updated", values);
+      toast.success("Chapter Updated successfully");
       toggleEdit();
       router.refresh();
     } catch (error) {
@@ -35,43 +35,46 @@ const CourseImageForm = ({ intialData, courseId }: Props) => {
   };
   const toggleEdit = () => setIsEditting((current) => !current);
   const [isEditting, setIsEditting] = useState(false);
-  console.log("image", intialData.image);
+  console.log("video", intialData.videoUrl);
   return (
     <div className="mt-6 bg-slate-100 rounded-md border p-4">
       <div className="font-medium flex item-center justify-between">
-        Course Image
+        Chapter Video
         <Button variant={"ghost"} onClick={toggleEdit}>
           {isEditting && <>Cancel</>}
-          {!isEditting && !intialData?.image && (
+          {!isEditting && !intialData?.videoUrl && (
             <>
               <PlusCircle className="w-4 h-4 mr-2" />
-              Add Image
+              Add Video
             </>
           )}
-          {!isEditting && intialData?.image && (
+          {!isEditting && intialData?.videoUrl && (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit Image
+              Edit Video
             </>
           )}
         </Button>
       </div>
-      {!isEditting && !intialData.image && (
+      {!isEditting && !intialData.videoUrl && (
         <div className="h-60  bg-slate-200 flex items-center justify-center rounded-md">
-          <ImageIcon className="h-10 w-10 text-slate-500" />
+          <Video className="h-10 w-10 text-slate-500" />
         </div>
       )}
 
-      {!isEditting && intialData.image && (
-        <div className="aspect-video rounded-md mt-2">
-          <CldImage
-            src={intialData.image!}
+      {!isEditting && intialData.videoUrl && (
+        <div className="relative aspect-video rounded-md mt-2">
+          {/* <CldVideoPlayer
+            src={intialData.videoUrl!}
             width={1600}
             height={900}
-            alt="Course Image"
+            autoPlay
             aspectRatio="video"
             className="object-cover rounded-md"
-          />
+          /> */}
+          <MuxPlayer playbackId={intialData.muxData?.playbackId || ""} />
+          Viedo can take a few minutes to load .Refresh the page if the video
+          does not apear
         </div>
       )}
       {isEditting && (
@@ -80,11 +83,12 @@ const CourseImageForm = ({ intialData, courseId }: Props) => {
             endpoint="courseImage"
             onChange={(url) => {
               console.log(`Uploading image: ${url}`);
-              onSubmit({ image: url! });
+              onSubmit({ videoUrl: url! });
             }}
           />
           <div className="text-xs text-muted-foreground mt-4 ">
-            16:9 aspect ratio recommended
+            {/* 16:9 aspect ratio recommended */}
+            Upload this chapters video
           </div>
         </div>
       )}
@@ -92,4 +96,4 @@ const CourseImageForm = ({ intialData, courseId }: Props) => {
   );
 };
 
-export default CourseImageForm;
+export default ChapterVideoForm;
