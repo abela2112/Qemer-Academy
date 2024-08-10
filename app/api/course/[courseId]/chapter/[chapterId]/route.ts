@@ -2,6 +2,58 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import Mux from "@mux/mux-node";
+
+export async function DELETE(
+  req: Request,
+  {
+    params: { courseId, chapterId },
+  }: { params: { chapterId: string; courseId: string } }
+) {
+  try {
+    const { userId } = auth();
+    if (!userId) return new NextResponse("Unauthorized", { status: 401 });
+
+    const ownCourse = await db.course.findUnique({
+      where: {
+        id: courseId,
+        userId,
+      },
+    });
+    if (!ownCourse) return new NextResponse("Unauthorized", { status: 401 });
+    const chapter = await db.chapter.findUnique({
+      where: {
+        id: chapterId,
+      },
+    });
+    if (!chapter) return new NextResponse("Not Found", { status: 404 });
+    const existingVideo = await db.muxData.findFirst({
+      where: {
+        chapterId: chapterId,
+      },
+    });
+    const { video } = new Mux({
+      tokenId: process.env.MUX_TOKEN_ID,
+      tokenSecret: process.env.MUX_TOKEN_SECRET,
+    });
+    if (existingVideo) {
+      await video.assets.delete(existingVideo.assetId);
+      await db.muxData.delete({
+        where: {
+          id: existingVideo.id,
+        },
+      });
+    }
+    await db.chapter.delete({
+      where: {
+        id: chapterId,
+      },
+    });
+    return new NextResponse(null, { status: 204 });
+  } catch (error) {
+    console.log("[chapter delete error]", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
+}
 export async function PATCH(
   req: Request,
   {
