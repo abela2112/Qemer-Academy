@@ -13,7 +13,6 @@ import ChapterVideoForm from "./_components/chapter-video-upload";
 import Banner from "@/components/banner";
 import ChapterAction from "./_components/ChapterAction";
 
-type Props = {};
 
 const ChapterIdPage = async ({
   params: { courseId, chapterId },
@@ -50,7 +49,7 @@ const ChapterIdPage = async ({
         <div className="flex items-center justify-between">
           <div className="w-full">
             <Link
-              href={`/teacher/course/${courseId}`}
+              href={`/teacher/courses/${courseId}`}
               className="flex items-center hover:opacity-75 text-sm transition mb-6"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />

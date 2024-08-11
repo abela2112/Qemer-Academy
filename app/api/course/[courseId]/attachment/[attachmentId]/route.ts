@@ -25,5 +25,8 @@ export async function DELETE(
       },
     });
     return NextResponse.json(attachment);
-  } catch (error) {}
+  } catch (error) {
+    console.log("{[course attachment error]}", error);
+    return new NextResponse("Something went wrong", { status: 500 });
+  }
 }

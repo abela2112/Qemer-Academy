@@ -3,33 +3,30 @@
 import ConfirmDialog from "@/components/modals/confirm-dialog";
 import COnfirmDialog from "@/components/modals/confirm-dialog";
 import { Button } from "@/components/ui/button";
+import { useConfettiStore } from "@/hooks/use-confetti-store";
 import axios from "axios";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-interface ChapterActionProps {
+interface ActionProps {
   disabled: boolean;
   courseId: string;
-  chapterId: string;
+
   isPublished: boolean;
 }
 
-const ChapterAction = ({
-  disabled,
-  courseId,
-  chapterId,
-  isPublished,
-}: ChapterActionProps) => {
+const Action = ({ disabled, courseId, isPublished }: ActionProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const confetti = useConfettiStore();
   const router = useRouter();
   const onDelete = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/course/${courseId}/chapter/${chapterId}`);
-      toast.success("Chapter Deleted");
-      router.push(`/teacher/course/${courseId}`);
+      await axios.delete(`/api/course/${courseId}`);
+      toast.success("Course Deleted");
+      router.push(`/teacher/courses`);
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -40,15 +37,12 @@ const ChapterAction = ({
     try {
       setIsLoading(true);
       if (isPublished) {
-        await axios.patch(
-          `/api/course/${courseId}/chapter/${chapterId}/unpublish`
-        );
-        toast.success("Chapter unPublished");
+        await axios.patch(`/api/course/${courseId}/unpublish`);
+        toast.success("Course unPublished");
       } else {
-        await axios.patch(
-          `/api/course/${courseId}/chapter/${chapterId}/publish`
-        );
-        toast.success("Chapter Published");
+        await axios.patch(`/api/course/${courseId}/publish`);
+        toast.success("Course Published");
+        confetti.onOpen();
       }
       router.refresh();
     } catch (error) {
@@ -76,4 +70,4 @@ const ChapterAction = ({
   );
 };
 
-export default ChapterAction;
+export default Action;

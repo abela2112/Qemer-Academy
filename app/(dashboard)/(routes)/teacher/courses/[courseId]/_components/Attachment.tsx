@@ -10,8 +10,7 @@ type Props = {
 import FileUpload from "@/components/file-upload";
 import { Button } from "@/components/ui/button";
 import { Attachment, Course } from "@prisma/client";
-import { File, ImageIcon, Loader2, Pencil, PlusCircle, X } from "lucide-react";
-import Image from "next/image";
+import { File, Loader2, Pencil, PlusCircle, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 const formSchema = z.object({
@@ -22,7 +21,7 @@ const CourseAttachmentForm = ({ intialData, courseId }: Props) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/course/${courseId}/attachment`, values);
+      await axios.post(`/api/course/${courseId}/attachment`, values);
       toast.success("Course Updated successfully");
       toggleEdit();
       router.refresh();
@@ -88,12 +87,12 @@ const CourseAttachmentForm = ({ intialData, courseId }: Props) => {
                 </div>
               )}
               {deletingId !== attachment.id && (
-                <button
+                <Button
                   onClick={() => onDelete(attachment.id)}
                   className="ml-auto hover:opacity-75 transition"
                 >
                   <X className="h-4 w-4" />
-                </button>
+                </Button>
               )}
             </div>
           ))}

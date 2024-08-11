@@ -43,12 +43,28 @@ export async function DELETE(
         },
       });
     }
-    await db.chapter.delete({
+    const deletedChapter = await db.chapter.delete({
       where: {
         id: chapterId,
       },
     });
-    return new NextResponse(null, { status: 204 });
+    const publishedChaptersInCourse = await db.chapter.findMany({
+      where: {
+        id: courseId,
+        isPublished: true,
+      },
+    });
+    if (!publishedChaptersInCourse.length) {
+      await db.course.update({
+        where: {
+          id: courseId,
+        },
+        data: {
+          isPublished: false,
+        },
+      });
+    }
+    return NextResponse.json(deletedChapter);
   } catch (error) {
     console.log("[chapter delete error]", error);
     return new NextResponse("Internal Server Error", { status: 500 });
