@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextIndex","fullTextSearch"]
 }
 
 datasource db {
@@ -31,7 +32,7 @@ model Course {
   purchases Purchase[]
   // MuxData      MuxData?
   // UserProgress UserProgress[]
-
+  @@fulltext([title])
   @@index([categoryId])
 }
 
