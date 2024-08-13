@@ -98,7 +98,7 @@ model UserProgress {
 }
 model Purchase {
   id   String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
+  userId String 
 
   courseId    String   @db.ObjectId
   course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)

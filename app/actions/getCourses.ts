@@ -23,6 +23,7 @@ export const getCourses = async ({
     const courses = await db.course.findMany({
       where: {
         categoryId,
+        isPublished: true,
         title: {
           contains: title,
         },
