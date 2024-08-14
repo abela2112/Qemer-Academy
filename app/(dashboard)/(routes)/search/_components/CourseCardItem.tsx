@@ -26,7 +26,7 @@ const CourseCardItem = ({
   progress,
 }: Props) => {
   return (
-    <Link href={`/course/${id}`}>
+    <Link href={`/courses/${id}`}>
       <div className="group hover:shadow-sm border p-3 overflow-hidden h-full transition rounded-lg">
         <div className="relative w-full aspect-video overflow-hidden rounded-md">
           <Image
