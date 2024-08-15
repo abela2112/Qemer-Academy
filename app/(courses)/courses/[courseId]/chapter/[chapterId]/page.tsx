@@ -77,6 +77,7 @@ const ChapterIdPage = async ({ params: { courseId, chapterId } }: Props) => {
               <div className="p-4 space-y-2">
                 {attachments?.map((attachment) => (
                   <a
+                    key={attachment.id}
                     href={attachment.url}
                     className="flex items-center p-3 w-full bg-sky-200 rounded-md text-sky-700 hover:underline "
                   >
