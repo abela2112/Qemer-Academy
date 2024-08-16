@@ -15,7 +15,7 @@ const InfoCard = ({ variant, icon: Icon, label, noOfItems }: Props) => {
       <IconBadge icon={Icon} variant={variant || "default"} />
       <div>
         <p className="font-medium">{label}</p>
-        <p>
+        <p className="text-gray-500 text-sm">
           {noOfItems} {noOfItems === 1 ? "Course" : "Courses"}
         </p>
       </div>

@@ -18,13 +18,13 @@ export default async function Dashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <InfoCard
           variant="default"
-          label="In Progress Course"
+          label="In Progress"
           icon={Clock}
           noOfItems={inProgressCourses.length}
         />
         <InfoCard
           variant="success"
-          label="Completed Course"
+          label="Completed"
           icon={CheckCircle}
           noOfItems={completedCourses.length}
         />
