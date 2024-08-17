@@ -3,8 +3,9 @@ import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import CourseList from "../search/_components/CourseList";
-import InfoCard from "./_components/InfoCard";
+
 import { CheckCircle, Clock } from "lucide-react";
+import InfoCard from "./_components/InfoCard";
 export default async function Dashboard() {
   const { userId } = auth();
   if (!userId) redirect("/");
