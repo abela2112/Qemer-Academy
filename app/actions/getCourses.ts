@@ -40,7 +40,7 @@ export const getCourses = async ({
         },
         purchases: {
           where: {
-            userId,
+            userId: userId,
           },
         },
       },

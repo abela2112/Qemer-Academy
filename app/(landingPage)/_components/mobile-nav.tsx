@@ -29,18 +29,18 @@ const MobileNav = (props: Props) => {
         </SheetHeader>
         <Link
           href={"#"}
-          className="text-md text-primary hover:underline transition capitalize font-medium hover:opacity-75"
+          className="text-md text-[#0077c0] hover:underline transition capitalize font-medium hover:opacity-75"
         >
           About
         </Link>
         <Link
           href={"#"}
-          className="text-md text-primary hover:underline transition capitalize font-medium hover:opacity-75"
+          className="text-md text-[#0077c0] hover:underline transition capitalize font-medium hover:opacity-75"
         >
           help
         </Link>
         <SignInButton>
-          <Button>Login</Button>
+          <Button className="bg-[#0077c0]">Login</Button>
         </SignInButton>
       </SheetContent>
     </Sheet>

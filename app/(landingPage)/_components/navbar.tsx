@@ -15,6 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import React from "react";
 import MobileNav from "./mobile-nav";
+import { Select } from "@/components/ui/select";
 
 type Props = {};
 const Navbar = (props: Props) => {
@@ -29,31 +30,32 @@ const Navbar = (props: Props) => {
               // value={value}
               // onChange={(e) => setValue(e.target.value)}
               className="w-full md:w-[250px] pl-9 rounded-md bg-slate-100 focus-visible:ring-slate-200"
-              placeholder="Search for courses"
+              placeholder="Want to learn ?"
             />
+            <Select></Select>
           </div>
         </div>
         <nav className="hidden  md:flex text-black/60 items-center gap-x-10 justify-around">
           <Link
             href={"#"}
-            className="text-md hover:underline hover:text-primary transition capitalize font-medium hover:opacity-75"
+            className="text-md hover:underline hover:text-[#0077c0] transition capitalize font-medium hover:opacity-75"
           >
             Courses
           </Link>
           <Link
             href={"#"}
-            className="text-md hover:underline hover:text-primary transition capitalize font-medium hover:opacity-75"
+            className="text-md hover:underline hover:text-[#0077c0] transition capitalize font-medium hover:opacity-75"
           >
             About
           </Link>
           <Link
             href={"#"}
-            className="text-md hover:underline hover:text-primary transition capitalize font-medium hover:opacity-75"
+            className="text-md hover:underline hover:text-[#0077c0] transition capitalize font-medium hover:opacity-75"
           >
             help
           </Link>
           <SignInButton>
-            <Button>Login</Button>
+            <Button className="bg-[#0077c0]">Login</Button>
           </SignInButton>
         </nav>
         <div className="md:hidden block">
