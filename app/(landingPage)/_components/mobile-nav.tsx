@@ -13,6 +13,8 @@ import Link from "next/link";
 import { SignInButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import { navLinks } from "@/data/link";
+import Navlink from "./navlink";
 const MobileNav = (props: Props) => {
   return (
     <Sheet>
@@ -27,18 +29,10 @@ const MobileNav = (props: Props) => {
         account and remove your data from our servers.
       </SheetDescription> */}
         </SheetHeader>
-        <Link
-          href={"#"}
-          className="text-md text-[#0077c0] hover:underline transition capitalize font-medium hover:opacity-75"
-        >
-          About
-        </Link>
-        <Link
-          href={"#"}
-          className="text-md text-[#0077c0] hover:underline transition capitalize font-medium hover:opacity-75"
-        >
-          help
-        </Link>
+        {navLinks.map((navlink, i) => (
+          <Navlink key={i} href={navlink.href} label={navlink.label} />
+        ))}
+
         <SignInButton>
           <Button className="bg-[#0077c0]">Login</Button>
         </SignInButton>

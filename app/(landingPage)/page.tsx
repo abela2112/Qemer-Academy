@@ -13,40 +13,25 @@ import AboutUs from "./_components/AboutUs";
 import Testimonials from "./_components/testimonials";
 import Footer from "./_components/Footer";
 import Tutors from "./_components/Tutors";
+import CallToAction from "./_components/call-to-action";
 
 type Props = {};
 
 const LandingPage = async (props: Props) => {
   const data = await getTopCourses();
-  const catagories = await db.category.findMany({
-    orderBy: {
-      name: "asc",
-    },
-    take: 4,
-    where: {
-      name: {
-        in: [
-          "Programming and Development",
-          "IT and Software",
-          "Personal Development",
-          "Design",
-          "Business",
-        ],
-      },
-    },
-  });
 
   return (
     <div className="relative flex flex-col w-full">
-      <Navbar />
+      {/* <Navbar categories={catagories} /> */}
       <Hero />
       <LogoTracker />
       <AboutUs />
       <Oursuccess />
-      <TopCourses courses={data} categories={catagories} />
+      <TopCourses courses={data} />
       <Tutors />
       <Testimonials />
-      <Footer />
+      <CallToAction />
+      {/* <Footer /> */}
       {/* <Mentors courses={data} categories={catagories} /> */}
     </div>
   );

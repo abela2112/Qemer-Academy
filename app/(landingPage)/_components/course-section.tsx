@@ -25,10 +25,10 @@ type CourseWithCategory = { category: Category | null } & Course;
 
 type Props = {
   courses: CourseWithCategory[];
-  categories: Category[];
+
 };
 
-const TopCourses = ({ courses, categories }: Props) => {
+const TopCourses = ({ courses }: Props) => {
   const [selected, setSelected] = useState("IT and Software");
   const [data, setData] = useState<CourseWithCategory[]>([]);
   useEffect(() => {
