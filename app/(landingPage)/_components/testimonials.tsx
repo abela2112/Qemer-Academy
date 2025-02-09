@@ -62,10 +62,11 @@ const Testimonials = (props: Props) => {
                       <div className="border  border-transparent border-l-muted-foreground" />
                       <div className="flex flex-col gap-y-4 text-muted-foreground">
                         <p className="text-xs">
-                          "Thank you so much for your help. It's exactly what
-                          I've been looking for. You won't regret it. It really
-                          saves me time and effort. TOTC is exactly what our
-                          business has been lacking."
+                          &quot;Thank you so much for your help. It&apos;s
+                          exactly what I&apos;ve been looking for. You
+                          won&apos;t regret it. It really saves me time and
+                          effort. TOTC is exactly what our business has been
+                          lacking.&quot;
                         </p>
                         <div className="flex justify-between">
                           <p className="text-sm">Gloria Rose</p>

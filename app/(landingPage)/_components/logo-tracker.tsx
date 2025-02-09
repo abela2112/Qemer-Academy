@@ -13,7 +13,8 @@ const LogoTracker = (props: Props) => {
     <section className="container px-20 py-8 md:py-12 bg-white">
       <div>
         <p className="text-center text-lg py-2 italic">
-          Trusted by the world's top brands
+          Let&apos;s join our famous class, the knowledge provided will
+          definitely be Trusted by the world&apos;s top brands
         </p>
         <div className="flex overflow-hidden  [mask-image:linear-gradient(to_right,transparent,black,transparent))]">
           <div className="flex gap-14 flex-none ">

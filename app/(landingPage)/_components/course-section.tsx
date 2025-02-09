@@ -37,15 +37,15 @@ const TopCourses = ({ courses }: Props) => {
     ]);
 
     // return () => {};
-  }, [selected]);
+  }, [selected, courses]);
 
   return (
     <section className="md:px-20 p-6 flex flex-col py-8 md:py-10 bg-[#c7eeff] w-full space-y-2">
       <span className="text-[#00a7ff]">Explore Programs</span>
       <h2 className="text-3xl font-semibold">Our Most Popular Class</h2>
       <p className="text-sm text-muted-foreground">
-        Let's join our famous class, the knowledge provided will definitely be
-        useful for you.
+        Let&apos; s join our famous class, the knowledge provided will
+        definitely be useful for you.
       </p>
 
       {/* <div className="space-y-4">
@@ -110,7 +110,7 @@ const TopCourses = ({ courses }: Props) => {
                     <div className="flex gap-x-2 items-center py-3">
                       <span className="text-[#0077c0]">4.3</span>
                       {Array.from({ length: 5 }).map((_, i) => (
-                        <Star className="h-4 w-4 text-[#fe942f]" />
+                        <Star key={i} className="h-4 w-4 text-[#fe942f]" />
                       ))}
                       (16,356)
                     </div>

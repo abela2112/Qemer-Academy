@@ -19,15 +19,15 @@ const Mentors = ({ courses, categories }: Props) => {
     ]);
 
     // return () => {};
-  }, [selected]);
+  }, [selected, courses]);
 
   return (
     <section className="md:px-20 p-6 items-center flex flex-col py-8 md:py-10 bg-gradient-to-b from-[#FFFFFF] to-[#D2DCFF] w-full">
       <h2 className="text-3xl font-semibold text-center">Meet our mentors</h2>
 
       <div className="flex gap-x-3 flex-wrap pt-2">
-        {data.map((course) => (
-          <Card className="sm:w-[250px] mt-4">
+        {data.map((course, i) => (
+          <Card key={i} className="sm:w-[250px] mt-4">
             <CardHeader>
               <Image
                 alt="card image"
