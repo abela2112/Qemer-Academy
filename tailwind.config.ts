@@ -22,6 +22,8 @@ const config = withUt({
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+
+        hero: `url('/Group 499.png')`,
       },
       colors: {
         border: "hsl(var(--border))",

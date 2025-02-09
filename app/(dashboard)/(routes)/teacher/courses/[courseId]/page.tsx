@@ -69,7 +69,7 @@ const CourseIdPage = async ({ params: { courseId } }: Props) => {
       {!course.isPublished && (
         <Banner label="This course is not published. It will not visible to students" />
       )}
-      <div className="p-6 h-full">
+      <div className="p-6 h-full overflow-y-auto">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="text-2xl font-medium">Course Setup</h1>

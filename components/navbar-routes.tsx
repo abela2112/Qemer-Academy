@@ -31,7 +31,7 @@ const NavbarRoutes = () => {
       <div className="flex gap-x-2 ml-auto">
         <SignedIn>
           {isTeacherPage || isCoursePage ? (
-            <Link href="/">
+            <Link href="/dashboard">
               <Button size="sm" variant="ghost">
                 <LogOut className="w-4 h-4 mr-2" />
                 Exit
