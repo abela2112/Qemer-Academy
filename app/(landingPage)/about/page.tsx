@@ -8,8 +8,8 @@ type Props = {};
 const AboutPage = (props: Props) => {
   return (
     <section className="p-6 md:px-20 pt-20">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex flex-col gap-4 p-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="flex flex-col gap-4 md:p-10">
           <h1 className="text-4xl text-[#0079c0] font-bold capitalize">
             About Us
           </h1>
@@ -33,7 +33,7 @@ const AboutPage = (props: Props) => {
             <ArrowRight className="w-6 h-6 ml-2" />
           </Button>
         </div>
-        <div className="p-10">
+        <div className="p-6 md:p-10">
           <div className="hidden md:block relative w-full rounded-md bg-[#F2F2F2] h-[480px]">
             <Image
               src={
@@ -51,25 +51,26 @@ const AboutPage = (props: Props) => {
               width={400}
               height={400}
               alt="about image"
-              className="absolute -top-5 -right-14 object-cover rounded-md"
+              className="md:absolute -top-5 -right-14 object-cover rounded-md"
             />
           </div>
         </div>
       </div>
 
-      <div className="p-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="px-10">
-            <div className="bg-[#F2F2F2] mx-auto w-[390px] h-[300px] rounded-md relative">
-              <Image
-                alt="about image 2"
-                src={
-                  "https://images.unsplash.com/photo-1591871987673-f1513e38493b?q=80&w=1892&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
-                width={400}
-                height={400}
-                className="object-cover rounded-md absolute top-5 -bottom-5 left-5 right-5"
-              />
+      <div className="md:p-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="">
+            <div className="mx-auto w-full md:w-[80%] rounded-md p-5  bg-[#F2F2F2] relative">
+              <div className="relative p-5 w-full h-[350px] mx-auto">
+                <Image
+                  alt="about image 2"
+                  src={
+                    "https://images.unsplash.com/photo-1591871987673-f1513e38493b?q=80&w=1892&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  }
+                  fill
+                  className="object-cover block rounded-md md:absolute top-5 -bottom-5 right-5"
+                />
+              </div>
             </div>
           </div>
           <div className="flex flex-col space-y-4 text-sm text-muted-foreground">

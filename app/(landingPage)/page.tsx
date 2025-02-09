@@ -21,13 +21,12 @@ const LandingPage = async (props: Props) => {
   const data = await getTopCourses();
 
   return (
-    <div className="relative flex flex-col w-full">
-      {/* <Navbar categories={catagories} /> */}
+    <div>
       <Hero />
       <LogoTracker />
       <AboutUs />
       <Oursuccess />
-      <TopCourses courses={data} />
+      {/* <TopCourses courses={data} /> */}
       <Tutors />
       <Testimonials />
       <CallToAction />

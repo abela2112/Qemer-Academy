@@ -1,16 +1,8 @@
 "use client";
-import { getTopCourses } from "@/app/actions/get-landingpage-course";
-import { getCourses } from "@/app/actions/getCourses";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { db } from "@/lib/db";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import CategoryItem from "./categoryItem";
-import { Category, Course } from "@prisma/client";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { CldImage } from "next-cloudinary";
+import { Category, Course } from "@prisma/client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 type CourseWithCategory = { category: Category | null } & Course;
 
 type Props = {

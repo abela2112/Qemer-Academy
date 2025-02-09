@@ -8,13 +8,13 @@ type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <section className="w-full md:px-20 pt-8 md:h-screen">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex flex-col space-y-5 p-6 md:p-10 bg-cover bg-center md:bg-hero">
+    <section className="w-full px-10 pt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4">
+        <div className="flex flex-col gap-y-5 md:p-10 bg-cover bg-center md:bg-hero">
           {/* <h2 className="uppercase text-xl md:text-2xl font-bold text-primary-foreground">
             Qemer Learning App
           </h2> */}
-          <h1 className="md:text-5xl lg:text-6xl  text-4xl capitalize font-sans font-bold leading-tight">
+          <h1 className="md:text-5xl lg:text-6xl  text-3xl capitalize font-sans font-bold leading-normal">
             Unlock Your <span className="text-[#0077c0]">Potential</span> with
             Qemer <span className="text-[#0077c0]">Learn</span> Anytime,
             Anywhere
@@ -25,8 +25,8 @@ const Hero = (props: Props) => {
           </p>
           <Button className="bg-[#0077c0] w-[250px]">Get Started</Button>
         </div>
-        <div className="flex md:items-end md:justify-end justify-center items-center md:flex-1 relative">
-          <div className="relative flex items-center justify-center rounded-full bg-[#0077c0] w-[500px] h-[500px]">
+        <div className="hidden lg:flex lg:items-end lg:justify-end justify-center items-center mt-2">
+          <div className="relative flex items-center justify-center rounded-full bg-[#0077c0] w-[300px] h-[300px] lg:w-[500px] lg:h-[500px]">
             <Image
               src={hero}
               alt="hero"
@@ -39,12 +39,12 @@ const Hero = (props: Props) => {
               alt="placeholder"
               className="absolute -left-2 -right-4 -top-2 bottom-0 object-cover -ml-5"
             />
-            <div className="h-12 w-12 rounded-full bg-[#0077c0] absolute bottom-1 left-2"></div>
-            <div className="rounded-md border border-[#0077c0] absolute top-8 -left-2 flex items-center gap-x-2 bg-white p-2">
-              <div className="bg-[#0077c0] p-2 rounded-md flex items-center justify-center">
+            <div className="h-12 w-12 rounded-full bg-[#0077c0] absolute bottom-1 left-2 z-20"></div>
+            <div className="rounded-md border border-[#0077c0] absolute top-8 -left-2 flex items-center gap-x-2 bg-white p-2 z-20">
+              <div className="bg-[#0077c0] p-2 rounded-md flex items-center justify-center z-20">
                 <Video className="text-muted" />
               </div>
-              <div className="flex flex-col">
+              <div className="hidden md:flex flex-col">
                 <span className="font-bold">2K+</span>
                 <span className="text-sm text-muted-foreground">
                   Videos Courses

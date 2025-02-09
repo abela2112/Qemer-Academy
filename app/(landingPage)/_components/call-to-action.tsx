@@ -6,7 +6,7 @@ type Props = {};
 
 const CallToAction = (props: Props) => {
   return (
-    <section className="p-8 bg-[#0077c0] md:w-[80%] mx-auto my-4 rounded-md grid grid-cols-2 gap-4 mt-2">
+    <section className="p-8 bg-[#0077c0] md:w-[80%] mx-auto my-4 rounded-md grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
       <div className="flex items-center justify-center">
         <Image
           src={
@@ -19,7 +19,7 @@ const CallToAction = (props: Props) => {
         />
       </div>
 
-      <div className="p-10 space-y-4">
+      <div className="md:p-10 space-y-4">
         <p className="text-3xl text-white font-bold">
           Become part of a global community of learners and educators
         </p>

@@ -14,11 +14,11 @@ const LandingLayout = async (props: Props) => {
     },
   });
   return (
-    <>
+    <div>
       <Navbar categories={catagories} />
-      {props.children}
+      <div>{props.children}</div>
       <Footer />
-    </>
+    </div>
   );
 };
 
