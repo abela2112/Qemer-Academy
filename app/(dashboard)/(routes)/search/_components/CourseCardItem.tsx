@@ -39,7 +39,7 @@ const CourseCardItem = ({
         </div>
 
         <div className="flex flex-col px-4 pb-4 pt-4 flex-grow">
-          <div className="text-lg font-bold group-hover:text-[#0077c0] transition line-clamp-2 mb-1 min-h-[56px]">
+          <div className="text-lg md:text-base font-bold group-hover:text-[#0077c0] transition line-clamp-2 break-words mb-1 min-h-[56px]">
             {title}
           </div>
           <p className="text-sm text-slate-500 font-medium mb-4">{category}</p>
