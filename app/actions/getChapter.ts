@@ -6,8 +6,11 @@ export const getChapter = async (
   chapterId: string,
   userId: string
 ) => {
-  console.log(`GetChapter ${courseId} ${chapterId} ${userId}`);
   try {
+    if (!courseId || !chapterId || courseId.length !== 24 || chapterId.length !== 24) {
+      throw new Error(`Invalid Course ID or Chapter ID`);
+    }
+
     const purchase = await db.purchase.findUnique({
       where: {
         userId_courseId: {
@@ -24,6 +27,7 @@ export const getChapter = async (
       },
       select: {
         price: true,
+        title: true,
       },
     });
 

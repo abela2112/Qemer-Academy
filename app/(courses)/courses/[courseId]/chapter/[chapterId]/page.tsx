@@ -9,6 +9,7 @@ import Preview from "@/components/Preview";
 import { Separator } from "@/components/ui/separator";
 import { File } from "lucide-react";
 import CourseProgressButton from "./_components/CourseProgressButton";
+import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
   params: {
@@ -16,6 +17,21 @@ type Props = {
     chapterId: string;
   };
 };
+
+export async function generateMetadata(
+  { params: { courseId, chapterId } }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { userId } = auth();
+  if (!userId) return { title: "Course Chapter" };
+
+  const { chapter, course } = await getChapter(courseId, chapterId, userId);
+
+  return {
+    title: `${chapter?.title || "Chapter"} - ${course?.title || "Course"}`,
+    description: chapter?.description || `Watch ${chapter?.title} on Qemer Academy`,
+  };
+}
 
 const ChapterIdPage = async ({ params: { courseId, chapterId } }: Props) => {
   const { userId } = auth();
@@ -50,7 +66,7 @@ const ChapterIdPage = async ({ params: { courseId, chapterId } }: Props) => {
           <VideoPlayer
             chapterId={chapterId}
             title={chapter.title}
-            playbackId={muxData?.playbackId!}
+            playbackId={muxData?.playbackId}
             courseId={courseId}
             nextChapterId={nextChapter?.id}
             isLocked={isLocked}

@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 type Props = {
   chapterId: string;
   title: string;
-  playbackId: string;
+  playbackId?: string | null;
   courseId: string;
   nextChapterId?: string;
   isLocked: boolean;
@@ -56,7 +56,7 @@ const VideoPlayer = ({
   };
   return (
     <div className="relative aspect-video">
-      {!isReady && !isLocked && (
+      {!isReady && !isLocked && playbackId && (
         <div className="flex items-center justify-center absolute inset-0 bg-slate-800">
           <Loader2 className="w-8 h-8 animate-spin text-secondary" />
         </div>
@@ -67,12 +67,13 @@ const VideoPlayer = ({
           <p className="text-sm">This chapter is Locked!</p>
         </div>
       )}
-      {!isLocked && (
+      {!isLocked && playbackId && (
         <MuxPlayer
+          title={title}
           className={cn(!isReady && "hidden")}
           onCanPlay={() => setIsReady(true)}
           onEnded={onEnd}
-          autoPlay
+          autoPlay={false}
           playbackId={playbackId}
         />
       )}

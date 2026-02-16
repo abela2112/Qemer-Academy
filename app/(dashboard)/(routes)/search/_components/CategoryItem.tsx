@@ -34,14 +34,32 @@ const CategoryItem = ({ value, label, icon: Icon }: Props) => {
   return (
     <button
       onClick={onClick}
-      className={cn(
-        "py-2 px-3 rounded-full flex items-center gap-x-1 border border-slate-200 text-sm hover:border-sky-500 transition",
-        isSelected && "bg-sky-200/20 border-sky-700 text-sky-800 "
-      )}
+      role="tab"
+      aria-selected={isSelected}
       type="button"
+      className={cn(
+        // Base styles - increased padding and added font weight
+        "py-2 px-5 min-w-max rounded-full border flex items-center gap-x-2 text-sm font-[600] transition-all duration-300 ease-in-out select-none shadow-sm",
+        
+        // Default State (Inactive) - More contrast
+        !isSelected && "bg-white border-slate-200 text-slate-700 hover:border-sky-400 hover:text-sky-800 hover:-translate-y-0.5 hover:shadow-md hover:bg-sky-50",
+        
+        // Active State - Stronger pop
+        isSelected && "bg-sky-700 border-sky-800 text-white shadow-lg ring-2 ring-sky-700/20 ring-offset-2 scale-105",
+        
+        // Interactive / Press
+        "active:scale-95 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2"
+      )}
     >
-      {Icon && <Icon size={20} />}
-      <div className="truncate">{label}</div>
+      {/* Icon sizing and animation */}
+      {Icon && <Icon size={18} className={cn("transition-transform duration-300", isSelected && "scale-110")} />}
+      
+      <span className="truncate">{label}</span>
+      
+      {/* Subtle indicator dot for active state */}
+      {isSelected && (
+        <span className="ml-1.5 w-1.5 h-1.5 rounded-full bg-white opacity-90 animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+      )}
     </button>
   );
 };

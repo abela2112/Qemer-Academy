@@ -1,5 +1,13 @@
+import { Metadata } from "next";
+
 import React from "react";
 import Navbar from "./_components/navbar";
+
+export const metadata: Metadata = {
+  title: "Qemer Academy - Online Learning Platform for Everyone",
+  description:
+    "Join Qemer Academy to master new skills with interactive courses, expert instructors, and a supportive community. Start your learning journey today!",
+};
 
 import Hero from "./_components/Hero";
 import LogoTracker from "./_components/logo-tracker";

@@ -36,15 +36,36 @@ const iconMap: Record<Category["name"], IconType> = {
 };
 const Categories = ({ items }: CategoriesProps) => {
   return (
-    <div className="flex items-center gap-x-2 pb-2 overflow-x-auto">
-      {items.map((item) => (
-        <CategoryItem
-          key={item.id}
-          value={item.id}
-          label={item.name}
-          icon={iconMap[item.name]}
-        />
-      ))}
+    <div className="relative w-full overflow-visible">
+      
+      <div
+        role="tablist"
+        aria-label="Filter courses by category"
+        className="flex items-center gap-x-3 overflow-x-auto pb-4 pt-2 px-1 snap-x snap-mandatory scroll-smooth"
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
+      >
+        <style jsx>{`
+          div::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
+        {items.map((item) => (
+          <div key={item.id} className="snap-start shrink-0">
+            <CategoryItem
+              value={item.id}
+              label={item.name}
+              icon={iconMap[item.name]}
+            />
+          </div>
+        ))}
+      </div>
+      
+      {/* Gradient Edges - Added pointer-events-none to prevent click blocking */}
+      <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white to-transparent pointer-events-none" />
     </div>
   );
 };
