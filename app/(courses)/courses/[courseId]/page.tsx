@@ -26,7 +26,10 @@ const CourseIdPage = async ({ params: { courseId } }: Props) => {
     },
   });
   if (!course) redirect("/");
-  return redirect(`/courses/${courseId}/chapter/${course?.Chapters[0].id}`);
+  if (!course.Chapters.length) {
+    return redirect("/");
+  }
+  return redirect(`/courses/${courseId}/chapter/${course.Chapters[0].id}`);
 };
 
 export default CourseIdPage;

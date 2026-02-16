@@ -21,6 +21,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Reveal } from "@/components/Reveal";
 type CourseWithCategory = { category: Category | null } & Course;
 
 type Props = {
@@ -41,12 +42,13 @@ const TopCourses = ({ courses }: Props) => {
 
   return (
     <section className="md:px-20 p-6 flex flex-col py-8 md:py-10 bg-[#c7eeff] w-full space-y-2">
-      <span className="text-[#00a7ff]">Explore Programs</span>
-      <h2 className="text-3xl font-semibold">Our Most Popular Class</h2>
-      <p className="text-sm text-muted-foreground">
-        Let&apos; s join our famous class, the knowledge provided will
-        definitely be useful for you.
-      </p>
+      <Reveal width="100%">
+        <span className="text-[#00a7ff]">Explore Programs</span>
+        <h2 className="text-3xl font-semibold">Our Most Popular Class</h2>
+        <p className="text-sm text-muted-foreground">
+          Let&apos; s join our famous class, the knowledge provided will
+          definitely be useful for you.
+        </p>
 
       {/* <div className="space-y-4">
         <div className="flex items-center gap-x-2 overflow-x-auto border border-transparent border-b-gray-200">
@@ -144,6 +146,7 @@ const TopCourses = ({ courses }: Props) => {
       <Button variant={"outline"} className="max-w-lg mx-auto">
         Explore More
       </Button>
+      </Reveal>
     </section>
   );
 };

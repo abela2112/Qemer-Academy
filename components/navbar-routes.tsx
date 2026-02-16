@@ -23,7 +23,7 @@ const NavbarRoutes = () => {
   const isSearchPage = pathname.includes("/search");
   return (
     <>
-      {isSearchPage && (
+      {(!isTeacherPage && !isCoursePage) && (
         <div className="hidden md:block">
           <SearchInput />
         </div>

@@ -13,7 +13,7 @@ export const navLinks = [
     label: "Courses",
   },
   {
-    href: "/FAQ",
+    href: "/faq",
     label: "FAQ",
   },
   {

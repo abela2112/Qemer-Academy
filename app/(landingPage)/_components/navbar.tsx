@@ -15,6 +15,8 @@ import { Category } from "@prisma/client";
 import MobileNav from "./mobile-nav";
 import Navlink from "./navlink";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   categories: Category[];
@@ -29,7 +31,19 @@ const Navbar = ({ categories }: Props) => {
     <header className="sticky top-0 z-50 backdrop-blur-sm px-5">
       <div className="flex items-center justify-between h-16 gap-x-2">
         <div className="flex  items-center gap-x-4">
-          <p className="text-2xl font-bold"> Qemer</p>
+          {/* <p className="text-2xl font-bold"> Qemer</p> */}
+          <Link href='/' className="relative w-40 h-12">
+           
+                <Image 
+                  src="/logo.png" 
+                  alt="Qemer Logo" 
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority
+                />
+            
+              </Link>
           <div className="relative hidden md:flex items-center  gap-x-2">
             <Search className="w-4 h-4 absolute top-3 left-3 text-slate-600" />
             <Input

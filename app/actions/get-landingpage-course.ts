@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { Category, Course } from "@prisma/client";
-type CourseWithCategory = { category: Category | null } & Course;
+type CourseWithCategory = { category: Category | null; Chapters: { id: string }[] } & Course;
+
 export const getTopCourses = async (
   categoryId?: string,
   title?: string
@@ -10,12 +11,21 @@ export const getTopCourses = async (
       where: {
         isPublished: true,
         categoryId,
-        title: {
-          contains: title,
-        },
+        ...(title ? { title: { contains: title, mode: "insensitive" } } : {}),
       },
       include: {
         category: true,
+        Chapters: {
+          where: {
+            isPublished: true,
+          },
+          select: {
+            id: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
     return courses;

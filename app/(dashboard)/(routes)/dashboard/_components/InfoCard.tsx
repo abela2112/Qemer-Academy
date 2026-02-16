@@ -1,25 +1,34 @@
 import { IconBadge } from "@/components/icon-badge";
 import { LucideIcon } from "lucide-react";
-import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
 
-type Props = {
+interface InfoCardProps {
+  numberOfItems: number;
   variant?: "default" | "success";
-  icon: LucideIcon;
   label: string;
-  noOfItems: number;
-};
+  icon: LucideIcon;
+}
 
-const InfoCard = ({ variant, icon: Icon, label, noOfItems }: Props) => {
+export const InfoCard = ({
+  variant,
+  icon: Icon,
+  numberOfItems,
+  label,
+}: InfoCardProps) => {
   return (
-    <div className="flex items-center border rounded-md p-3 gap-x-2">
-      <IconBadge icon={Icon} variant={variant || "default"} />
-      <div>
-        <p className="font-medium">{label}</p>
-        <p className="text-gray-500 text-sm">
-          {noOfItems} {noOfItems === 1 ? "Course" : "Courses"}
-        </p>
-      </div>
-    </div>
+    <Card className="border-none shadow-md">
+      <CardContent className="flex items-center gap-x-4 p-6">
+        <div className={`p-3 rounded-full ${variant === "success" ? "bg-emerald-100" : "bg-sky-100"}`}>
+            <IconBadge variant={variant} icon={Icon} />
+        </div>
+        <div>
+          <p className="font-medium text-lg text-slate-700">{label}</p>
+          <p className="text-gray-500 text-sm font-medium">
+            {numberOfItems} {numberOfItems === 1 ? "Course" : "Courses"}
+          </p>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

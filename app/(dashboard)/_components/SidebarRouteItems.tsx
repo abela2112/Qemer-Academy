@@ -27,24 +27,16 @@ const SidebarRouteItems = ({
       type="button"
       onClick={onClick}
       className={cn(
-        "flex item-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 hover:text-slate-600 hover:bg-slate-300/20",
+        "flex items-center gap-x-2 text-gray-400 text-sm font-medium pl-6 py-3 transition-all rounded-lg mb-1 hover:text-white hover:bg-white/10",
         isActive &&
-          "text-sky-700 bg-sky-200/20 hover:text-sky-700 hover:bg-sky-200/20"
+          "text-slate-900 bg-emerald-50 hover:bg-emerald-100 hover:text-slate-900 shadow-sm"
       )}
     >
-      <div className="flex items-center gap-x-2 py-4">
-        <Icon
+      <Icon
           size={22}
-          className={cn("text-slate-500", isActive && "text-sky-700")}
-        />
-        {label}
-      </div>
-      <div
-        className={cn(
-          "ml-auto opacity-0 border-2 border-sky-700 h-full transition-all",
-          isActive && "opacity-100"
-        )}
+          className={cn("text-gray-400", isActive && "text-slate-900")}
       />
+      {label}
     </button>
   );
 };

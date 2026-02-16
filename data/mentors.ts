@@ -30,10 +30,5 @@ export const mentorsData = [
     image: Avatar3,
     description: "Lead engineering teams at Figma, Pitch, and Protocol Labs.",
   },
-  {
-    name: "Marvin McKinney",
-    title: "Co-op & Internships Program & Operations Manager",
-    image: Avatar5,
-    description: "Lead engineering teams at Figma, Pitch, and Protocol Labs.",
-  },
+  
 ];
